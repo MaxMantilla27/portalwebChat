@@ -1,0 +1,103 @@
+<div class="footerr">
+  <div class="container superior">
+    <div class="row">
+      <!-- <div class="col-lg-3 col-sm-6 col-xs-12">
+        <div class="item-container">
+          <h4 class="titulo-footer">BSG Institute</h4>
+          <div class="row">
+            <div class="col-sm-12 item-footer">
+              <div class="subitem-container">
+                <a routerLink="/AcercaBsGrupo" (click)="ScrollTO('valores')">Valores corporativos</a>
+              </div>
+            </div>
+            <div class="col-sm-12 item-footer">
+              <div class="subitem-container">
+                <a routerLink="/AcercaBsGrupo" (click)="ScrollTO('numeros')">En números</a>
+              </div>
+            </div>
+            <div class="col-sm-12 item-footer">
+              <div class="subitem-container">
+                <a routerLink="/AcercaBsGrupo" (click)="ScrollTO('calidad')">Política de calidad</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="item-container">
+          <h4 class="titulo-footer">Servicios</h4>
+          <div class="row">
+            <div class="col-sm-12 item-footer" *ngFor="let item of servicios">
+              <div class="subitem-container" >
+                <a routerLink="{{item.route}}" target="_blank">{{item.title}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="item-container">
+          <h4 class="titulo-footer">Central Telefónica</h4>
+          <div class="row">
+            <div class="subitem-container">
+              <div class="col-sm-12 item-footer" *ngFor="let item of centralTelefonica">
+                <img
+                  alt=""
+                  [src]="item.icono"
+                  width="20rem"
+                />
+                <span>{{item.pais}} {{item.telefono}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="item-container">
+          <h4 class="titulo-footer">Más Información</h4>
+          <div class="row">
+
+            <div class="col-sm-12 item-footer">
+              <div class="subitem-container">
+                <a routerLink="/AcercaBsGrupo" target="_blank">Acerca de BSG Institute</a>
+              </div>
+            </div>
+            <div class="subitem-container">
+              <div class="col-sm-12 item-footer">
+                <a routerLink="/contactenos" target="_blank">Contáctenos</a>
+              </div>
+              <div class="col-sm-12 item-footer">S&iacute;guenos en: </div>
+              <div class="col-sm-12 item-footer">
+                <div class="redes-container">
+                  <div class="redes-item"  *ngFor="let item of redesSociales">
+                    <a [href]="item.route" target="_blank" target="_blank"><img [src]="item.icono" alt="{{item.name}}"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+  <div class="container inferior">
+    <div class="row">
+      <div class="col-md-8">
+        <span class="copyrigth">
+          © 2020 BSG Institute, todos los derechos reservados • <a routerLink="/termino-uso-web" target="_blank">Términos de uso</a>  • <a routerLink="/politica-privacidad" target="_blank">Política de privacidad</a><br>
+          PMI, PMP, PMI-RMP, PMI-SP, CAPM, PMBOK, PMI Agile Certified Practitioner (PMI-ACP), Project Management Professional
+          y el logotipo PMI Registered Education Provider son marcas registradas del Project Management Institute, Inc. <br>
+          The Open Group, TOGAF® and The Open Group Certification logo are trademarks of The Open Group.
+        </span>
+      </div>
+      <div class="col-md-4 reclamaciones-container">
+        <img src="../../../../../assets/icons/libro-reclamaciones-icon.svg" alt="">
+          <span class="reclamaciones" routerLink="/LibroReclamacion">
+            Libro de Reclamaciones
+          </span>
+      </div>
+    </div>
+  </div>
+</div>

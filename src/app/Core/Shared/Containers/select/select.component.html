@@ -1,0 +1,25 @@
+<!--nomal-->
+<mat-form-field appearance="outline" *ngIf="tipo==1">
+  <mat-label>{{label}}</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let item of data" [value]="item.value" >{{item.Nombre}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<!--imagenes-->
+<ng-container *ngIf="tipo==3">
+  <div (click)="select.open()" class="contSelect"   >
+    <div  style="background-image: url({{Urlselected}});" alt="" class="urlSelect"></div>
+    <div class="nameSelect nombrealumnoHeader" *ngIf="!token">{{NameSelected}}</div>
+    <i class="material-icons" >arrow_drop_down</i>
+
+    <mat-form-field appearance="fill" class="tranparent">
+      <mat-label>{{label}}</mat-label>
+      <mat-select #myselsetc [(ngModel)]="valueDefecto" #select (selectionChange)="ChangeSelected($event.value)" panelClass="myPanelClass">
+
+        <mat-option *ngFor="let item of dataUrl" [value]="item.value" style="font-size: 16px;">
+          <img [src]="item.Url?item.Url:''" alt="" style="width: 35px;margin-right: 20px;">{{item.Nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</ng-container>

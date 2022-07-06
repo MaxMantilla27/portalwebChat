@@ -1,0 +1,226 @@
+<div class="container">
+  <div class="rowpaddAv breadcrumb" style="padding-top: 0px !important; padding-bottom: 0px !important;">
+    <app-miga-pan [items]="migaPan"></app-miga-pan>
+  </div>
+</div>
+<div style="border-top:solid 3px #f4f4f4 ;"></div>
+<div class="container">
+  <div class="row rowpaddAv">
+    <div class="col-12 col-md-12 col-lg-12">
+      <mat-tab-group class="tabVertical" [(selectedIndex)]="tabIndex" (selectedTabChange)="tabChanged($event)">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM" [ngClass]="{'ActiveChil':IndicacionActive==true}">
+              <div class="iconMat iconIndicaciones"></div>
+              <div class="titleMatr">Indicaciones</div>
+              <i class="material-icons" *ngIf="IndicacionActive==true" style="position: absolute;right: 5px;">keyboard_arrow_up</i>
+            </div>
+          </ng-template>
+          <div style="padding: 10px 30px;">
+            <div class="cursoTitle">{{programEstructura.programaGeneral}}</div>
+            <div class="cursoTabDescripcion">¡Hola! a continuacion te explicamos mediante videos intuitivos como debes
+              realizar tus evaluaciones.
+              <br>
+              Te deseamos existos.
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-9 col-lg-9" style="margin: 10px 0px;">
+                <app-indicaciones-content [title]="'Preguntas interactivas'" [imgUrl]="imgsIndocaciones[0]"
+                (HoverIn)='imgsIndocaciones[0]="preguntas-interactivas-38.svg"' (HoverOut)='imgsIndocaciones[0]="preguntas-naranja-38.svg"'
+                  (ButtoclClick)="changeIndexIndicaciones(1)"></app-indicaciones-content>
+              </div>
+              <div class="col-12 col-md-9 col-lg-9" style="margin: 10px 0px;">
+                <app-indicaciones-content [title]="'Crucigramas'" [imgUrl]="imgsIndocaciones[1]"
+                (HoverIn)='imgsIndocaciones[1]="crucigramas-39.svg"' (HoverOut)='imgsIndocaciones[1]="crucigrama-naranja-39.svg"'
+                  (ButtoclClick)="changeIndexIndicaciones(2)"></app-indicaciones-content>
+              </div>
+              <div class="col-12 col-md-9 col-lg-9" style="margin: 10px 0px;">
+                <app-indicaciones-content [title]="'Tareas'" [imgUrl]="imgsIndocaciones[2]"
+                (HoverIn)='imgsIndocaciones[2]="tareas-indicaciones-40.svg"' (HoverOut)='imgsIndocaciones[2]="tareas-naranja-40.svg"'
+                  (ButtoclClick)="changeIndexIndicaciones(3)"></app-indicaciones-content>
+              </div>
+              <div class="col-12 col-md-9 col-lg-9" style="margin: 10px 0px;">
+                <app-indicaciones-content [title]="'Calificar tarea de pares'" [imgUrl]="imgsIndocaciones[3]"
+                (HoverIn)='imgsIndocaciones[3]="calificar-tareas-41.svg"' (HoverOut)='imgsIndocaciones[3]="tareas-pares-naranja-41.svg"'
+                  (ButtoclClick)="changeIndexIndicaciones(4)"></app-indicaciones-content>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <ng-container *ngIf="IndicacionActive==true">
+
+          <mat-tab >
+            <ng-template mat-tab-label class="tabSubcontent">
+              <div class="contentHeaderM subContent">
+                <div class="titleMatr">Preguntas interactivas</div>
+              </div>
+            </ng-template>
+            <div style="padding: 10px 30px;">
+              <app-indicaciones-options-content [videoUrl]="videoPreguntas"
+                [TitlePrograma]="programEstructura.programaGeneral" [title]="'Preguntas Interactivas'"
+                [imgUrl]="'preguntas-naranja-38.svg'">
+              </app-indicaciones-options-content>
+            </div>
+          </mat-tab>
+          <mat-tab >
+            <ng-template mat-tab-label>
+              <div class="contentHeaderM subContent">
+                <div class="titleMatr">Crucigramas</div>
+              </div>
+            </ng-template>
+            <div style="padding: 10px 30px;">
+              <app-indicaciones-options-content [videoUrl]="videoCrucigramas"
+                [TitlePrograma]="programEstructura.programaGeneral" [title]="'Crucigramas'" [imgUrl]="'crucigrama-naranja-39.svg'">
+              </app-indicaciones-options-content>
+            </div>
+          </mat-tab>
+          <mat-tab >
+            <ng-template mat-tab-label>
+              <div class="contentHeaderM subContent">
+                <div class="titleMatr">Tareas</div>
+              </div>
+            </ng-template>
+            <div style="padding: 10px 30px;">
+              <app-indicaciones-options-content [videoUrl]="videoTareas"
+                [TitlePrograma]="programEstructura.programaGeneral" [title]="'Tareas'" [imgUrl]="'tareas-pares-naranja-41.svg'">
+              </app-indicaciones-options-content>
+            </div>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div class="contentHeaderM subContent">
+                <div class="titleMatr">Calificar tarea de pares</div>
+              </div>
+            </ng-template>
+            <div style="padding: 10px 30px;">
+              <app-indicaciones-options-content [videoUrl]="videoTrabajoP"
+                [TitlePrograma]="programEstructura.programaGeneral" [title]="'Calificar tarea de pares'"
+                [imgUrl]="'tareas-naranja-40.svg'">
+              </app-indicaciones-options-content>
+            </div>
+          </mat-tab>
+        </ng-container>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM">
+              <div class="iconMat iconModulos"></div>
+              <div class="titleMatr">Modulos</div>
+            </div>
+          </ng-template>
+          <div style="padding: 10px 30px;">
+
+            <div class="cursoTitle">{{programEstructura.programaGeneral}}</div>
+            <div class="cursoTabDescripcion">¡Bienvenido! Debes completar los siguientes modulos de tu programa:</div>
+            <div class="cursoTabRemenber">
+              <img src="../../../assets/icons/horario-04.svg" alt="">
+              <div><strong>Recuerda: </strong>Debes completar el curso I, para poder acceder al siguiente curso, y así progresivamente</div>
+            </div>
+            <app-curso-modulos [idMatricula]="idMatricula" [programEstructura]="programEstructura">
+            </app-curso-modulos>
+          </div>
+        </mat-tab>
+        <mat-tab  *ngIf="curso!=undefined && curso.proyectoAplicacion">
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM">
+              <div class="iconMat iconProyectos"></div>
+              <div class="titleMatr">Proyectos de Aplicación</div>
+            </div>
+          </ng-template>
+          <div style="padding: 10px 30px;">
+            <app-curso-proyecto [curso]="curso" [idProyecto]="curso.idProyecto" [idPGeneral]="curso.idPGeneral" [idPEspecifico]="curso.idPEspecifico">
+
+            </app-curso-proyecto>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM" [ngClass]="{'ActiveChil':CertificadoActive==true}">
+              <div class="iconMat iconCertificados"></div>
+              <div class="titleMatr">Certificados</div>
+            </div>
+          </ng-template>
+          <ng-template matTabContent>
+            <div style="padding: 10px 30px;">
+              <app-curso-certificado *ngIf="curso!=undefined"  [alertaDigital]="alertaDigital" [alertaFisico]="alertaFisico"
+              [datosCertificado]="datosCertificado"  [curso]="curso" [idProyecto]="curso.idProyecto" [idPGeneral]="curso.idPGeneral"
+              [idPEspecifico]="curso.idPEspecifico"
+              [changeOnGenerate]="generateCertificado" (OnGenerate)="ObtenerDatosCertificado()"
+              (OnValidation)="ObtenerDatosCertificado()">
+
+              </app-curso-certificado>
+            </div>
+          </ng-template>
+
+        </mat-tab>
+
+        <ng-container *ngIf="CertificadoActive==true">
+
+          <mat-tab
+          [disabled]="datosCertificado==undefined ||
+                        (this.datosCertificado.idEstado_matricula!=5 &&
+                        this.datosCertificado.idEstado_matricula!=12) ||
+                      datosCertificado.nombreArchivo==null">
+            <ng-template mat-tab-label class="tabSubcontent">
+              <div class="contentHeaderM subContent" style="cursor: pointer;" (click)="certificadoDigital()">
+                <div class="titleMatr">Certificado Digital</div>
+              </div>
+            </ng-template>
+            <div style="padding: 10px 30px;">
+              <app-curso-certificado-digital *ngIf="curso!=undefined" [datosCertificado]="datosCertificado"  [curso]="curso"
+              [changeOnGenerate]="generateCertificado" (OnGenerate)="ObtenerDatosCertificado()"></app-curso-certificado-digital>
+            </div>
+          </mat-tab>
+          <mat-tab [disabled]="datosCertificado==undefined ||  datosCertificado.nombreArchivo==null">
+            <ng-template mat-tab-label>
+              <div class="contentHeaderM subContent" style="cursor: pointer;" (click)="certificadoFisico()">
+                <div class="titleMatr">Certificado Fisico</div>
+              </div>
+            </ng-template>
+            <div style="padding: 10px 30px;">
+              <app-curso-certificado-fisico *ngIf="curso!=undefined" [datosCertificado]="datosCertificado"  [curso]="curso"
+              [changeOnGenerate]="generateCertificado" [idPEspecifico]="curso.idPEspecifico"
+              [idMatricula]="curso.idMatriculaCabecera" [idPGeneral]="curso.idPGeneral"
+              [CodigoMatricula]="curso.codigoMatricula" (OnGenerate)="ObtenerDatosCertificado()" ></app-curso-certificado-fisico>
+            </div>
+          </mat-tab>
+        </ng-container>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM">
+              <div class="iconMat iconTramites"></div>
+              <div class="titleMatr">Trámites</div>
+            </div>
+          </ng-template>
+          <div style="padding: 10px 30px;">
+          <app-curso-tramites [IdMatricula]="idMatricula" [Capitulo]="programEstructura.programaGeneral"></app-curso-tramites>
+          </div>
+        </mat-tab>
+
+        <mat-tab *ngIf="curso!=undefined && curso.webibarActivo">
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM">
+              <div class="iconMat iconWebinars"></div>
+              <div class="titleMatr">Webinar</div>
+            </div>
+          </ng-template>
+          <div style="padding: 10px 30px">
+            <app-modulo-webinars [Capitulo]="programEstructura.programaGeneral" [IdMatriculaCabecera]="idMatricula"></app-modulo-webinars>
+          </div>
+        </mat-tab>
+        <mat-tab  *ngIf="curso!=undefined && curso.benficioSolicitado">
+          <ng-template mat-tab-label>
+            <div class="contentHeaderM">
+              <div class="iconMat iconBeneficios"></div>
+              <div class="titleMatr">Mis Beneficios</div>
+            </div>
+          </ng-template>
+          <div style="padding: 10px 30px;">
+            <app-beneficios [IdMatricula]="idMatricula" [Capitulo]="programEstructura.programaGeneral"> </app-beneficios>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<ng-container *ngIf="validacionChat==false">
+  <div class="card text-center " >
+    <div class="card-header"  >
+      <div class="CabeceraInicialChat" *ngIf="chatOpen==false" (click)="chatInicial=true && chatOpen=true">
+        <div class="row">
+          <div style="width:30%">
+            <img style="width: 40px;height: 25px; margin-top:10px;margin-left: 25px;" src="https://bsginstitute.com/img-web/chatV2/chat-icon-minimizado.png" alt="">
+          </div>
+          <div style="width:70%;margin-top:10px;text-align: left;">
+            Soporte Técnico
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container  *ngIf="chatOpen==true">
+      <div class="card CabeceraContenido" >
+        <div class="card-header" (click)="chatOpen=!chatOpen" style="color: white;background: #FF8800;">
+          <div class="row">
+            <div style="width:30%">
+              <img style="width: 40px;height: 25px; margin-top:10px;margin-left: 25px;" src="https://bsginstitute.com/img-web/chatV2/chat-icon-minimizado.png" alt="">
+            </div>
+            <div style="width:70%;margin-top:10px;text-align: left;">
+              Soporte Técnico
+            </div>
+          </div>
+          <div class="row">
+            Soy Walter,¿En qué puedo ayudarte?
+          </div>
+        </div>
+
+        <div class="card-footer" style="background: white;">
+          <div class="row" >
+            <div >
+              <app-default-button style="background:#00B464; color:white;font-size: 17px;" [confs]="{titulo:'Enviar'}"
+              [style]="'width: 95%;margin-top: 20px;'"(ButtoclClick)="send()"></app-default-button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+
+</ng-container>
+<script src="utils.js"></script>
+<script src="signalr.js"></script>
+<script src="http://localhost:14150/signalr/hubs"></script>
+

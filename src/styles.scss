@@ -1,0 +1,45 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@font-face {
+  font-family: 'poppings';
+
+  font-style: normal;
+  src: url(assets/fuentes/poppings2/poppins-v19-latin-regular.eot);
+  src: url(assets/fuentes/poppings2/poppins-v19-latin-regular.woff2) format('woff2'),
+       url(assets/fuentes/poppings2/poppins-v19-latin-regular.woff) format('woff'),
+       url(assets/fuentes/poppings2/poppins-v19-latin-regular.ttf) format('truetype'),
+       url(assets/fuentes/poppings2/poppins-v19-latin-regular.svg#Poppins) format('svg');
+}
+*{
+  font-family:'poppings'
+}
+html, body {}
+body { margin: 0; font-family:'poppings', Roboto, "Helvetica Neue", sans-serif;color: #4a4a49 }
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$custom-typography: mat-typography-config('poppings');
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius:20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover  {
+  background: #555;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
