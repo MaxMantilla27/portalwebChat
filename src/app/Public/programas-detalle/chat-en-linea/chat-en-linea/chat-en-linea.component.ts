@@ -27,7 +27,7 @@ export class ChatEnLineaComponent implements OnInit {
     Mensaje: ['', [Validators.required]],
   });
     let builder = new HubConnectionBuilder();
-    this.hubConnection = builder.withUrl("http://localhost:14150/signalr/hubs").build();
+    this.hubConnection = builder.withUrl("https://localhost:7120/hub").build();
 
     this.hubConnection.on("ReceiveMessage",(Mensaje) =>{
       this.messages.push(Mensaje);

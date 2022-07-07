@@ -4,7 +4,7 @@ import { ChatEnLineaService } from 'src/app/Core/Shared/Services/ChatEnLinea/cha
 import { HelperService } from 'src/app/Core/Shared/Services/helper.service';
 import { SnackBarServiceService } from 'src/app/Core/Shared/Services/SnackBarService/snack-bar-service.service';
 import { HttpClient } from '@angular/common/http';
-import * as signalR from '@aspnet/signalr';
+import * as signalR from '@microsoft/signalr';
 import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 @Component({
   selector: 'app-soporte-tecnico',
@@ -14,7 +14,7 @@ import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/templa
 })
 export class SoporteTecnicoComponent implements OnInit {
   /* public hubConnection: HubConnection; */
-  public hubConnection2: any;
+  public hubConnection: any;
   constructor(
     private http: HttpClient,
     private _ChatEnLinea: ChatEnLineaService,
@@ -27,41 +27,26 @@ export class SoporteTecnicoComponent implements OnInit {
     console.log("Inicio de conexión")
     let builder = new HubConnectionBuilder();
     console.log(builder)
-    /* this.hubConnection = builder.configureLogging(signalR.LogLevel.Debug).withUrl("http://localhost:14150/signalr").build(); */
-    this.hubConnection2 = new signalR.HubConnectionBuilder().withUrl("http://localhost:14150/signalr").build();
 
-    this.hubConnection2 .on("messageReceived", (username: string, message: string) => {
+    this.hubConnection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7120/hub").build();
+
+    this.hubConnection .on("messageReceived", (username: string, message: string) => {
       console.log(username),
       console.log(message)
     });
-    this.hubConnection2.start().then(() =>console.log('Connection started'))
+    this.hubConnection.start().then(() =>{
+        this.GetId();
+        console.log('Connection started')})
         .catch((err:any) =>console.log('Error while starting connection: ' + err));
-    console.log(this.hubConnection2)
-
-
-
-/*     builder.integraHub.connection.qs ="idUsuario=" + 11 + ";rooms=" + 633 + ";usuarioNombre=Anonimo"; */
-
-   /*  $.connection.hub.url = "http://localhost:14150/signalr";
-    if (!$.connection.integraHub) {
-        _conexionFallida();
-        return;
-    }
-    $.connection.integraHub.connection.qs = "idUsuario=" + 11 + ";rooms=" + 633 + ";usuarioNombre=Anonimo";
-
-    _integraProxy = $.connection.integraHub;
- */
-
-   /*  this.hubConnection.on("ReceiveMessage",(Mensaje) =>{
-      this.messages.push(Mensaje);
-      console.log(this.messages)
-    })
-    this.hubConnection.start().then(() =>console.log('Connection started'))
-        .catch(err =>console.log('Error while starting connection: ' + err));
-    console.log(this.hubConnection) */
-
-
+    console.log(this.hubConnection);
+    this.hubConnection.on("NuevaActividad",(username: string, message: string) => {
+      console.log(username),
+      console.log(message)
+    });
   }
+
+  public data=[];
+  public connectionId='';
   public auxiliar:any;
   public message ='';
   public messages:any;
@@ -78,18 +63,25 @@ export class SoporteTecnicoComponent implements OnInit {
   public username = new Date().getTime();
   public combosPrevios:any
   ngOnInit(): void {
-
-
   }
-
-
   EnviarMensajeChat(){
-
   }
 
   send() {
-    this.hubConnection2.send("newMessage", this.username, 'prueba mensaje')
+    this.hubConnection.invoke('NuevaActividadParaEjecutar2', this.connectionId, "Mensaje Prueba Juan").then((x:any)=> console.log(x))
+    this.hubConnection.send("newMessage", this.username, 'prueba mensaje')
       .then(() => (console.log('enviado')));
+/*     this.hubConnection.send("NuevaActividadParaEjecutar2","ASD","Mensaje de Prueba Juan")
+      .then(()=>(console.log('enviado mensaje Juan'))); */
   }
+  GetId(){
+    this.hubConnection.invoke('getconnectionid')
+      .then((data:any) => {
+        console.log(data);
+        this.connectionId = data;
+      });
+  }
+
+
 }
 
