@@ -31,10 +31,16 @@
 
         <div class="card-footer" style="background: white;">
           <div class="row" >
-            <div >
+            <div class="col-12">
               <app-default-button style="background:#00B464; color:white;font-size: 17px;" [confs]="{titulo:'Enviar'}"
               [style]="'width: 95%;margin-top: 20px;'"(ButtoclClick)="send()"></app-default-button>
-
+            </div>
+            <div class="col-12">
+              <input type="text" [(ngModel)]="IdUsuarioEnviar">
+            </div>
+            <div class="col-12">
+              <app-default-button style="background:#00B464; color:white;font-size: 17px;" [confs]="{titulo:'Enviar'}"
+              [style]="'width: 95%;margin-top: 20px;'"(ButtoclClick)="send2()"></app-default-button>
             </div>
           </div>
         </div>
